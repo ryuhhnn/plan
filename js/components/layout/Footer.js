@@ -5,7 +5,8 @@ export default class Footer extends React.Component {
     const containerStyle = {
       textAlign: "center",
       width: "100%",
-      padding: "25px 0px"
+      padding: "25px 0px",
+      backgroundColor: "#eee"
     };
 
     return (

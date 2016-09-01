@@ -9,14 +9,9 @@ export default class Navigation extends React.Component {
       <Navbar fixedTop>
         <Navbar.Header>
           <Navbar.Brand>
-            <a href="#">Plan.</a>
+            <Link href="/" to="/">Plan.</Link>
           </Navbar.Brand>
         </Navbar.Header>
-        <Nav>
-          <NavItem componentClass={IndexLink} href="/" to="/">Home</NavItem>
-          <NavItem href="#">Features</NavItem>
-          <NavItem href="#">Pricing</NavItem>
-        </Nav>
         <Nav pullRight>
           <NavItem componentClass={Link} href="login" to="login">Login</NavItem>
           <NavItem componentClass={Link} href="register" to="register">Register</NavItem>

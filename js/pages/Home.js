@@ -4,8 +4,13 @@ import { Button, Col, Grid, Jumbotron, Panel, Row } from "react-bootstrap";
 
 export default class Home extends React.Component {
   render() {
+    const jumbotronContainer = {
+      width: "100%",
+      padding: "0px"
+    };
     const jumbotronStyle = {
-      marginTop: "70px"
+      borderRadius: "0px",
+      paddingTop: "118px"
     };
     const featuresStyle = {
     };
@@ -16,41 +21,45 @@ export default class Home extends React.Component {
       textAlign: "center",
       padding: "0"
     };
+    const panelStyle = {
+      borderRadius: "0px",
+      textAlign: "center"
+    };
+    const panelHeadStyle = {
+      textAlign: "center",
+      paddingTop: "10px",
+      paddingBottom: "10px"
+    };
     const freePanelTitle = (
-      <div>
+      <div style={panelHeadStyle}>
         <h3>Free</h3>
         <h4>$0</h4>
       </div>
     );
-    const freePanelStyle = {
-      textAlign: "center"
-    };
     const paidPanelTitle = (
-      <div>
+      <div style={panelHeadStyle}>
         <h3>Premium</h3>
         <h4>$4.99</h4>
       </div>
     );
-    const paidPanelStyle = {
-      textAlign: "center"
-    };
     const professionalPanelTitle = (
-      <div>
+      <div style={panelHeadStyle}>
         <h3>Professional</h3>
         <h4>$9.99</h4>
       </div>
     );
-    const professionalPanelStyle = {
-      textAlign: "center"
+    const buttonStyle = {
+      borderRadius: "0px",
+      border: "Opx solid transparent"
     };
 
     return (
       <div>
-        <div class="container-fluid" style={jumbotronStyle}>
-          <Jumbotron>
+        <div class="container-fluid" style={jumbotronContainer}>
+          <Jumbotron style={jumbotronStyle}>
           <h1>Plan.</h1>
           <p>Planning an event can be hard, but it doesn't have to be! With Plan, everything you need for your event to run smoothly is in the palm of your hands.</p>
-          <p><Button bsStyle="primary">Register</Button></p>
+          <p><Button bsStyle="primary" style={buttonStyle}>Register</Button></p>
           </Jumbotron>
         </div>
         <div class="container-fluid" style={featuresStyle}>
@@ -69,7 +78,7 @@ export default class Home extends React.Component {
           <Grid>
             <Row className="show-grid">
               <Col md={4}>
-                <Panel header={freePanelTitle} style={freePanelStyle}>
+                <Panel header={freePanelTitle} style={panelStyle}>
                   <ul style={listStyle}>
                     <li><b>1</b> hosted event</li>
                     <li><b>99¢</b> per additional event</li>
@@ -80,7 +89,7 @@ export default class Home extends React.Component {
                 </Panel>
               </Col>
               <Col md={4}>
-                <Panel header={paidPanelTitle} style={paidPanelStyle}>
+                <Panel header={paidPanelTitle} style={panelStyle}>
                   <ul style={listStyle}>
                     <li><b>10</b> hosted events</li>
                     <li><b>99¢</b> per additional event</li>
@@ -90,7 +99,7 @@ export default class Home extends React.Component {
                 </Panel>
               </Col>
               <Col md={4}>
-                <Panel header={professionalPanelTitle} style={professionalPanelStyle}>
+                <Panel header={professionalPanelTitle} style={panelStyle}>
                   <ul style={listStyle}>
                     <li><b>Unlimited</b> hosted events</li>
                     <li><b>Unlimited</b> guest invites</li>
