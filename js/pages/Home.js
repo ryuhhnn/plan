@@ -4,6 +4,9 @@ import { Button, Col, Grid, Jumbotron, Panel, Row } from "react-bootstrap";
 
 export default class Home extends React.Component {
   render() {
+    const style = {
+      paddingBottom: "100px"
+    };
     const jumbotronContainer = {
       width: "100%",
       padding: "0px"
@@ -54,7 +57,7 @@ export default class Home extends React.Component {
     };
 
     return (
-      <div>
+      <div style={style}>
         <div class="container-fluid" style={jumbotronContainer}>
           <Jumbotron style={jumbotronStyle}>
           <h1>Plan.</h1>
