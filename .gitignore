@@ -1,0 +1,12 @@
+# Logs
+*.log
+npm-debug.log*
+
+# Compiled JS
+js/*.min.js
+
+# Dependencies
+node_modules
+
+# OS Generated Files
+.DS_Store
