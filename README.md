@@ -4,7 +4,23 @@ Plan is an open-source event planning platform written on top of the React frame
 
 ## Installation
 
-Installation is pretty straightforward. Clone the repository, run "npm install", then run "webpack" in your terminal. All minified JavaScript will be outputted to <i>scripts.min.js</i>.
+Install dependencies
+```
+npm install
+```
+
+Run webpack to build
+
+```
+webpack
+```
+
+To watch for changes run
+```
+webpack --watch
+```
+
+All minified JavaScript will be outputted to <i>js/scripts.min.js</i>.
 
 ## Screenshots
 
