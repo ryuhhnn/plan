@@ -22,6 +22,20 @@ webpack --watch
 
 All minified JavaScript will be outputted to <i>js/scripts.min.js</i>.
 
+## Usage
+
+To run a local development server, install webpack-dev-server globally by running
+```
+npm install -g webpack-dev-server
+```
+
+Then run using the command
+```
+webpack-dev-server
+```
+
+To skip using a development server, simply open index.html in your web browser of choice.
+
 ## Screenshots
 
 ![Alt text](/media/screenshot1.jpg?raw=true "Home Page")
