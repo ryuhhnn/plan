@@ -34,6 +34,8 @@ Then run using the command
 webpack-dev-server
 ```
 
+You can visit your server by accessing <i>localhost:8080</i> and can see the webpack-dev-server console by accessing <i>localhost:8080/webpack-dev-server/index.html</i>
+
 To skip using a development server, simply open index.html in your web browser of choice.
 
 ## Screenshots
