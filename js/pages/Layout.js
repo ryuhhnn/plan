@@ -12,9 +12,9 @@ export default class Layout extends React.Component {
 
     return (
       <div style={wrapper}>
-        <Navigation/>
+        <Navigation />
         {this.props.children}
-        <Footer/>
+        <Footer />
       </div>
     );
   }

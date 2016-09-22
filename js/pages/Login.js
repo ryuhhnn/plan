@@ -9,6 +9,7 @@ export default class Login extends React.Component {
       width: "350px",
       height: "100%"
     };
+    
     return (
       <div class="container" style={marginStyle}>
         <form>
