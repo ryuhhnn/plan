@@ -2,7 +2,7 @@ import React from "react";
 
 import { Button, ControlLabel, FormControl, FormGroup, Glyphicon, Modal } from "react-bootstrap";
 
-export default class EditLocation extends React.Component {
+export default class AddLocation extends React.Component {
   constructor(props) {
     super(props);
     this.state = { showModal: false };
@@ -27,10 +27,10 @@ export default class EditLocation extends React.Component {
   render() {
     return (
       <span>
-        <Button onClick={this.open}><Glyphicon glyph="pencil" /> Edit</Button>
+        <Button bsStyle="success" onClick={this.open}>Create New <Glyphicon glyph="plus" /></Button>
         <Modal show={this.state.showModal} onHide={this.hide}>
           <Modal.Header closeButton>
-            <Modal.Title>Edit Location</Modal.Title>
+            <Modal.Title>Add Location</Modal.Title>
           </Modal.Header>
           <Modal.Body>
             <form>

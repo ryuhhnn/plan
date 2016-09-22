@@ -2,6 +2,7 @@ import React from "react";
 
 import { Glyphicon, ListGroup, ListGroupItem, Panel } from "react-bootstrap";
 
+import AddLocation from "./AddLocation";
 import EditLocation from "./EditLocation";
 
 export default class Locations extends React.Component {
@@ -22,7 +23,7 @@ export default class Locations extends React.Component {
     return (
       <Panel header={locationsPanelTitle} style={panelStyle}>
         <ListGroup fill>
-          <ListGroupItem>Create New <Glyphicon glyph="plus" /></ListGroupItem>
+          <ListGroupItem><AddLocation /></ListGroupItem>
           <ListGroupItem>Location 1 <EditLocation /></ListGroupItem>
           <ListGroupItem>Location 2 <EditLocation /></ListGroupItem>
         </ListGroup>
