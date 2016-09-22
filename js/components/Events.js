@@ -2,6 +2,8 @@ import React from "react";
 
 import { Glyphicon, ListGroup, ListGroupItem, Panel } from "react-bootstrap";
 
+import AddEvent from "./AddEvent";
+
 export default class Events extends React.Component {
   render() {
     const panelStyle = {
@@ -20,7 +22,7 @@ export default class Events extends React.Component {
     return (
       <Panel header={eventsPanelTitle} style={panelStyle}>
         <ListGroup fill>
-          <ListGroupItem>Create New <Glyphicon glyph="plus" /></ListGroupItem>
+          <ListGroupItem><AddEvent /></ListGroupItem>
           <ListGroupItem>Event 1</ListGroupItem>
           <ListGroupItem>Event 2</ListGroupItem>
         </ListGroup>
