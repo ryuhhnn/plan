@@ -1,35 +1,92 @@
 import React from "react";
+import ReactDOM from "react-dom";
 
-import { Button, ControlLabel, FieldGroup, FormControl, FormGroup } from "react-bootstrap";
+var Parse = require('parse');
+var ParseReact = require('parse-react');
+var ParseComponent = ParseReact.Component(React);
 
-export default class Login extends React.Component {
+import { Alert, Button, ControlLabel, FieldGroup, FormControl, FormGroup } from "react-bootstrap";
+
+export default class Login extends ParseComponent {
+  constructor(props) {
+    super(props);
+    this.register = this.register.bind(this);
+  }
+
+  observe(props, state) {
+    return {
+      user: ParseReact.currentUser
+    };
+  }
+
+  static contextTypes = {
+    router: React.PropTypes.object.isRequired
+  }
+
+  static defaultProps = {
+    error: null
+  }
+
+  state = {
+    error: this.props.error,
+  }
+
+  register() {
+    var email = ReactDOM.findDOMNode(this.refs.email).value;
+    var name = ReactDOM.findDOMNode(this.refs.name).value;
+    var password = ReactDOM.findDOMNode(this.refs.password).value;
+    var confirmPassword = ReactDOM.findDOMNode(this.refs.confirmPassword).value;
+    if (password === confirmPassword) {
+      var u = new Parse.User({
+        username: username,
+        password: password
+      });
+      u.signUp().then(function() {
+        // Successful registration. Redirect to Dashboard.
+        this.context.router.push("/dashboard");
+      }, function() {
+        // Registration error.
+        self.setState({ error: "There was an error creating your account. Please try again." });
+      });
+    } else {
+      this.setState({ error: "Passwords don't match!" });
+    }
+  }
+
   render () {
     const marginStyle = {
       marginTop: "70px",
       width: "350px",
       height: "100%"
     };
-    
+
     return (
       <div class="container" style={marginStyle}>
         <form>
+          {
+            this.state.error ?
+            <Alert bsStyle="danger">
+              {this.state.error}
+            </Alert> :
+            null
+          }
           <FormGroup controlId="email">
             <ControlLabel>Email</ControlLabel>
-            <FormControl type="email" placeholder="Email" />
+            <FormControl type="email" ref="email" placeholder="Email" />
           </FormGroup>
           <FormGroup controlId="username">
             <ControlLabel>Name</ControlLabel>
-            <FormControl type="text" placeholder="Jean Doe" />
+            <FormControl type="text" ref="name" placeholder="Jean Doe" />
           </FormGroup>
           <FormGroup controlId="password">
             <ControlLabel>Password</ControlLabel>
-            <FormControl type="password" placeholder="Password" />
+            <FormControl type="password" ref="password" placeholder="Password" />
           </FormGroup>
           <FormGroup controlId="confirmPassword">
             <ControlLabel>Confirm Password</ControlLabel>
-            <FormControl type="password" placeholder="Confirm Password" />
+            <FormControl type="password" ref="confirmPassword" placeholder="Confirm Password" />
           </FormGroup>
-          <Button type="submit">
+          <Button onClick={this.register} type="submit">
             Register
           </Button>
         </form>
