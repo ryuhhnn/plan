@@ -35,11 +35,6 @@ export default class UserNavigation extends ParseComponent {
           <Navbar.Brand>
             <Link href="/" to="/">Plan.</Link>
           </Navbar.Brand>
-          {
-            this.data.user ?
-            <Navbar.Text>Signed in as: {this.data.user.get("name")}</Navbar.Text> :
-            null
-          }
         </Navbar.Header>
         <Nav pullRight>
           <NavItem componentClass={Link} href="dashboard" to="dashboard">Dashboard</NavItem>
