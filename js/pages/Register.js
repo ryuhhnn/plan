@@ -38,8 +38,10 @@ export default class Login extends ParseComponent {
     var confirmPassword = ReactDOM.findDOMNode(this.refs.confirmPassword).value;
     if (password === confirmPassword) {
       var u = new Parse.User({
-        username: username,
-        password: password
+        username: email,
+        password: password,
+        name: name,
+        email: email
       });
       u.signUp().then(function() {
         // Successful registration. Redirect to Dashboard.
