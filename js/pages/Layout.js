@@ -2,8 +2,28 @@ import React from "react";
 
 import Footer from "../components/layout/Footer";
 import Navigation from "../components/layout/Navigation";
+import UserNavigation from "../components/layout/UserNavigation";
 
-export default class Layout extends React.Component {
+var Parse = require('parse');
+var ParseReact = require('parse-react');
+var ParseComponent = ParseReact.Component(React);
+
+export default class Layout extends ParseComponent {
+  constructor(props) {
+    super(props);
+    // Bind any class functions
+  }
+
+  observe(props, state) {
+    return {
+      user: ParseReact.currentUser
+    };
+  }
+
+  static contextTypes = {
+    router: React.PropTypes.object.isRequired
+  }
+
   render() {
     const wrapper = {
       position: "relative",
@@ -12,7 +32,11 @@ export default class Layout extends React.Component {
 
     return (
       <div style={wrapper}>
-        <Navigation />
+        {
+          this.data.user ?
+          <UserNavigation /> :
+          <Navigation />
+        }
         {this.props.children}
         <Footer />
       </div>
