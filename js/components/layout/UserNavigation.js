@@ -10,7 +10,12 @@ import { Nav, Navbar, NavItem } from "react-bootstrap";
 export default class UserNavigation extends ParseComponent {
   constructor(props) {
     super(props);
-    // Bind any class functions
+    this.logOut = this.logOut.bind(this);
+  }
+
+  logOut() {
+    Parse.User.logOut();
+    this.context.router.push("/");
   }
 
   observe(props, state) {
