@@ -12,7 +12,8 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 
 // Initialize Parse
-Parse.initialize('APPLICATION_ID', 'JAVASCRIPT_KEY');
+Parse.initialize("APPLICATION_ID", "JAVASCRIPT_KEY");
+Parse.serverURL = "SERVER_URL";
 
 const app = document.getElementById("app");
 ReactDOM.render(
