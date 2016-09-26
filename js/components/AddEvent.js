@@ -1,9 +1,13 @@
 import React from "react";
 import DateTime from "react-datetime";
 
+var Parse = require('parse');
+var ParseReact = require('parse-react');
+var ParseComponent = ParseReact.Component(React);
+
 import { Button, ControlLabel, FormControl, FormGroup, Glyphicon, Modal } from "react-bootstrap";
 
-export default class AddEvent extends React.Component {
+export default class AddEvent extends ParseComponent {
   constructor(props) {
     super(props);
     this.state = { showModal: false };
