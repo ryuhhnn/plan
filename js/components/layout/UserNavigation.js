@@ -15,6 +15,7 @@ export default class UserNavigation extends ParseComponent {
 
   logOut() {
     Parse.User.logOut();
+    this.data.user = null;
     this.context.router.push("/");
   }
 
