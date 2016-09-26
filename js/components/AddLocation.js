@@ -7,7 +7,7 @@ var ParseComponent = ParseReact.Component(React);
 
 import { Alert, Button, ControlLabel, FormControl, FormGroup, Glyphicon, Modal } from "react-bootstrap";
 
-export default class AddLocation extends React.Component {
+export default class AddLocation extends ParseComponent {
   constructor(props) {
     super(props);
     this.state = { showModal: false };
