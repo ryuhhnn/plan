@@ -3,8 +3,8 @@ import React from "react";
 import { Button, FormControl, FormGroup, Glyphicon, Modal } from "react-bootstrap";
 
 export default class Message extends React.Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
     this.state = { showModal: false };
     this.open = this.open.bind(this);
     this.save = this.save.bind(this);

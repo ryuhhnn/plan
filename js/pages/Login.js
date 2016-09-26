@@ -9,8 +9,8 @@ var ParseComponent = ParseReact.Component(React);
 import { Alert, Button, ControlLabel, FieldGroup, FormControl, FormGroup } from "react-bootstrap";
 
 export default class Login extends ParseComponent {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
     this.login = this.login.bind(this);
   }
 

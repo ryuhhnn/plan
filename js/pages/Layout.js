@@ -9,11 +9,6 @@ var ParseReact = require('parse-react');
 var ParseComponent = ParseReact.Component(React);
 
 export default class Layout extends ParseComponent {
-  constructor(props) {
-    super(props);
-    // Bind any class functions
-  }
-
   observe(props, state) {
     return {
       user: ParseReact.currentUser

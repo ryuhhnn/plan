@@ -8,8 +8,8 @@ var ParseComponent = ParseReact.Component(React);
 import { Nav, Navbar, NavItem } from "react-bootstrap";
 
 export default class UserNavigation extends ParseComponent {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
     this.logOut = this.logOut.bind(this);
   }
 
