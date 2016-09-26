@@ -1,14 +1,33 @@
 import React from "react";
+import ReactDOM from "react-dom";
 
-import { Button, ControlLabel, FormControl, FormGroup, Glyphicon, Modal } from "react-bootstrap";
+var Parse = require('parse');
+var ParseReact = require('parse-react');
+var ParseComponent = ParseReact.Component(React);
+
+import { Alert, Button, ControlLabel, FormControl, FormGroup, Glyphicon, Modal } from "react-bootstrap";
 
 export default class AddLocation extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = { showModal: false };
     this.open = this.open.bind(this);
     this.save = this.save.bind(this);
     this.hide = this.hide.bind(this);
+  }
+
+  observe(props, state) {
+    return {
+      user: ParseReact.currentUser
+    };
+  }
+
+  static defaultProps = {
+    error: null
+  }
+
+  state = {
+    error: this.props.error
   }
 
   open() {
@@ -17,7 +36,19 @@ export default class AddLocation extends React.Component {
 
   save() {
     // Code for saving new location to database
-    this.setState({ showModal: false });
+    var name = ReactDOM.findDOMNode(this.refs.name).value;
+    var address = ReactDOM.findDOMNode(this.refs.address).value;
+    var user = this.data.user;
+    if (name.length && address.length){
+      ParseReact.Mutation.Create("Locations", {
+        createdBy: user,
+        name: name,
+        address: address
+      }).dispatch();
+      self.setState({ showModal: false });
+    } else {
+      this.setState({ error: "Please enter all fields" });
+    }
   }
 
   hide() {
@@ -33,14 +64,21 @@ export default class AddLocation extends React.Component {
             <Modal.Title>Add Location</Modal.Title>
           </Modal.Header>
           <Modal.Body>
+            {
+              this.state.error ?
+              <Alert bsStyle="danger">
+                {this.state.error}
+              </Alert> :
+              null
+            }
             <form>
               <FormGroup controlId="locationName">
                 <ControlLabel>Name</ControlLabel>
-                <FormControl type="text" placeholder="Some Location" />
+                <FormControl type="text" ref="name" placeholder="Some Location" />
               </FormGroup>
               <FormGroup controlId="locationAddress">
                 <ControlLabel>Address</ControlLabel>
-                <FormControl type="text" placeholder="1234 Some Street, St. Louis, MO 63123" />
+                <FormControl type="text" ref="address" placeholder="1234 Some Street, St. Louis, MO 63123" />
               </FormGroup>
             </form>
           </Modal.Body>

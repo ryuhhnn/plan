@@ -4,8 +4,8 @@ import DateTime from "react-datetime";
 import { Button, ControlLabel, FormControl, FormGroup, Glyphicon, Modal } from "react-bootstrap";
 
 export default class AddEvent extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = { showModal: false };
     this.open = this.open.bind(this);
     this.save = this.save.bind(this);

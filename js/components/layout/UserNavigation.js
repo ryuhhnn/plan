@@ -8,14 +8,14 @@ var ParseComponent = ParseReact.Component(React);
 import { Nav, Navbar, NavItem } from "react-bootstrap";
 
 export default class UserNavigation extends ParseComponent {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.logOut = this.logOut.bind(this);
   }
 
   logOut() {
     Parse.User.logOut();
-    this.data.user = null;
+    this.data.user = null; // Workaround for current bug in ParseReact
     this.context.router.push("/");
   }
 
