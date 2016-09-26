@@ -1,10 +1,25 @@
 import React from "react";
 
+var Parse = require('parse');
+var ParseReact = require('parse-react');
+var ParseComponent = ParseReact.Component(React);
+
 import { Glyphicon, ListGroup, ListGroupItem, Panel } from "react-bootstrap";
 
 import AddEvent from "./AddEvent";
 
-export default class Events extends React.Component {
+export default class Events extends ParseComponent {
+  constructor(props) {
+    super(props);
+  }
+
+  observe(props, state) {
+    return {
+      user: ParseReact.currentUser,
+      events: new Parse.Query("Events").equalTo("createdBy", this.data.user).ascending("createdAt")
+    };
+  }
+
   render() {
     const panelStyle = {
       borderRadius: "0px",
@@ -23,8 +38,13 @@ export default class Events extends React.Component {
       <Panel header={eventsPanelTitle} style={panelStyle}>
         <ListGroup fill>
           <ListGroupItem><AddEvent /></ListGroupItem>
-          <ListGroupItem>Event 1</ListGroupItem>
-          <ListGroupItem>Event 2</ListGroupItem>
+          {
+            this.data.events ?
+            this.data.events.map(function(event) {
+              return <ListGroupItem>{event.name}</ListGroupItem>
+            }) :
+            <ListGroupItem>No events created</ListGroupItem>
+          }
         </ListGroup>
       </Panel>
     );
