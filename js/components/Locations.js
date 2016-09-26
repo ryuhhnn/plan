@@ -41,10 +41,10 @@ export default class Locations extends ParseComponent {
           <ListGroupItem><AddLocation /></ListGroupItem>
           {
             this.data.locations ?
-              <ListGroupItem>No locations created</ListGroupItem> :
             this.data.locations.map(function(location) {
               return <ListGroupItem>{location.name} <EditLocation /></ListGroupItem>
-            })
+            }) :
+            <ListGroupItem>No locations created</ListGroupItem>
           }
         </ListGroup>
       </Panel>

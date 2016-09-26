@@ -12,13 +12,44 @@ export default class AddEvent extends React.Component {
     this.hide = this.hide.bind(this);
   }
 
+  observe(props, state) {
+    return {
+      user: ParseReact.currentUser,
+      locations: new Parse.Query("Locations").equalTo("createdBy", this.data.user).ascending("createdAt")
+    };
+  }
+
+  static defaultProps = {
+    error: null
+  }
+
+  state = {
+    error: this.props.error
+  }
+
   open() {
     this.setState({ showModal: true });
   }
 
   save() {
-    // Code for saving new location to database
-    this.setState({ showModal: false });
+    // Code for saving new event to database
+    var name = ReactDOM.findDOMNode(this.refs.name).value;
+    var location = ReactDOM.findDOMNode(this.refs.location).value;
+    var date = ReactDOM.findDOMNode(this.refs.date).value;
+    var details = ReactDOM.findDOMNode(this.refs.details).value;
+    var user = this.data.user;
+    if (name.length && location.length && date.length && details.length){
+      ParseReact.Mutation.Create("Events", {
+        createdBy: user,
+        name: name,
+        location: location,
+        date: date,
+        details: details
+      }).dispatch();
+      self.setState({ showModal: false });
+    } else {
+      this.setState({ error: "Please enter all fields" });
+    }
   }
 
   hide() {
@@ -34,25 +65,37 @@ export default class AddEvent extends React.Component {
             <Modal.Title>New Event</Modal.Title>
           </Modal.Header>
           <Modal.Body>
+            {
+              this.state.error ?
+              <Alert bsStyle="danger">
+                {this.state.error}
+              </Alert> :
+              null
+            }
             <form>
               <FormGroup controlId="eventName">
                 <ControlLabel>Name</ControlLabel>
-                <FormControl type="text" placeholder="Jordan's Birthday" />
+                <FormControl type="text" ref="name" placeholder="Jordan's Birthday" />
               </FormGroup>
               <FormGroup controlId="location">
                 <ControlLabel>Location</ControlLabel>
-                <FormControl componentClass="select" placeholder="Select">
-                  <option value="select">Location 1</option>
-                  <option value="other">Location 2</option>
+                <FormControl componentClass="select" ref="location" placeholder="Select">
+                  {
+                    this.data.locations ?
+                    this.data.locations.map(function(location) {
+                      return <option value="{location.objectId}">{location.name}</option>
+                    }) :
+                    <option value="null">Please create a location first</option>
+                  }
                 </FormControl>
               </FormGroup>
               <FormGroup controlId="date">
                 <ControlLabel>Date</ControlLabel>
-                <DateTime />
+                <DateTime ref="date" />
               </FormGroup>
               <FormGroup controlId="details">
                 <ControlLabel>Event Details</ControlLabel>
-                <FormControl componentClass="textarea" placeholder="We are celebrating Jordan's big day!" />
+                <FormControl componentClass="textarea" ref="details" placeholder="We are celebrating Jordan's big day!" />
               </FormGroup>
             </form>
           </Modal.Body>
