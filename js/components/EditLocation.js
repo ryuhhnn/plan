@@ -23,14 +23,6 @@ export default class EditLocation extends ParseComponent {
     };
   }
 
-  static defaultProps = {
-    error: null
-  }
-
-  state = {
-    error: this.props.error
-  }
-
   open() {
     this.setState({ showModal: true });
   }
@@ -60,13 +52,6 @@ export default class EditLocation extends ParseComponent {
             <Modal.Title>Edit Location</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            {
-              this.state.error ?
-              <Alert bsStyle="danger">
-                {this.state.error}
-              </Alert> :
-              null
-            }
             <form>
               <FormGroup controlId="locationName">
                 <ControlLabel>Name</ControlLabel>
