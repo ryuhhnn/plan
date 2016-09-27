@@ -45,7 +45,7 @@ export default class AddLocation extends ParseComponent {
         name: name,
         address: address
       }).dispatch();
-      self.setState({ showModal: false });
+      this.setState({ showModal: false });
     } else {
       this.setState({ error: "Please enter all fields" });
     }

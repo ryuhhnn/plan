@@ -18,7 +18,7 @@ export default class EventDetail extends React.Component {
         <Grid>
           <Row className="show-grid">
             <Col md={6}>
-              <h1>Event Title <small>Event Date</small></h1>
+              <h1>Event Name <small>Event Date</small></h1>
               <address>
                 <strong>Location Name</strong><br />
                 1234 Some Street<br />
