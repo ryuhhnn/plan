@@ -42,7 +42,7 @@ export default class Locations extends ParseComponent {
           {
             this.data.locations ?
             this.data.locations.map(function(location) {
-              return <ListGroupItem>{location.name} <EditLocation /></ListGroupItem>
+              return <ListGroupItem>{location.name} <EditLocation locationId={location.id} /></ListGroupItem>
             }) :
             <ListGroupItem>No locations created</ListGroupItem>
           }

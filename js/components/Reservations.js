@@ -1,11 +1,15 @@
 import React from "react";
 
+var Parse = require('parse');
+var ParseReact = require('parse-react');
+var ParseComponent = ParseReact.Component(React);
+
 import { Glyphicon, ListGroup, ListGroupItem, Panel } from "react-bootstrap";
 
 import AddReservation from "./AddReservation";
 import Message from "./Message";
 
-export default class Reservations extends React.Component {
+export default class Reservations extends ParseComponent {
   render() {
     const panelStyle = {
       borderRadius: "0px",

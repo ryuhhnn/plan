@@ -1,8 +1,13 @@
 import React from "react";
+import ReactDOM from "react-dom";
+
+var Parse = require('parse');
+var ParseReact = require('parse-react');
+var ParseComponent = ParseReact.Component(React);
 
 import { Button, ControlLabel, FormControl, FormGroup, Glyphicon, Modal } from "react-bootstrap";
 
-export default class EditLocation extends React.Component {
+export default class EditLocation extends ParseComponent {
   constructor(props) {
     super(props);
     this.state = { showModal: false };
@@ -11,12 +16,34 @@ export default class EditLocation extends React.Component {
     this.hide = this.hide.bind(this);
   }
 
+  observe(props, state) {
+    return {
+      user: ParseReact.currentUser,
+      location: new Parse.Query("Locations").get(this.props.locationId)
+    };
+  }
+
+  static defaultProps = {
+    error: null
+  }
+
+  state = {
+    error: this.props.error
+  }
+
   open() {
     this.setState({ showModal: true });
   }
 
   save() {
-    // Code for saving new location to database
+    // Code for updating location in database
+    var name = ReactDOM.findDOMNode(this.refs.name).value;
+    var address = ReactDOM.findDOMNode(this.refs.address).value;
+    var id = this.props.locationId;
+    ParseReact.Mutation.Set(id, {
+      name: name,
+      address: address
+    }).dispatch();
     this.setState({ showModal: false });
   }
 
@@ -33,14 +60,21 @@ export default class EditLocation extends React.Component {
             <Modal.Title>Edit Location</Modal.Title>
           </Modal.Header>
           <Modal.Body>
+            {
+              this.state.error ?
+              <Alert bsStyle="danger">
+                {this.state.error}
+              </Alert> :
+              null
+            }
             <form>
               <FormGroup controlId="locationName">
                 <ControlLabel>Name</ControlLabel>
-                <FormControl type="text" placeholder="Some Location" />
+                <FormControl type="text" ref="name" value={this.data.location.name} />
               </FormGroup>
               <FormGroup controlId="locationAddress">
                 <ControlLabel>Address</ControlLabel>
-                <FormControl type="text" placeholder="1234 Some Street, St. Louis, MO 63123" />
+                <FormControl type="text" ref="address" value={this.data.location.address} />
               </FormGroup>
             </form>
           </Modal.Body>
