@@ -1,23 +1,12 @@
 import React from "react";
 
-var Parse = require('parse');
-var ParseReact = require('parse-react');
-var ParseComponent = ParseReact.Component(React);
-
 import { Glyphicon, ListGroup, ListGroupItem, Panel } from "react-bootstrap";
 
 import AddEvent from "./AddEvent";
 
-export default class Events extends ParseComponent {
+export default class Events extends React.Component {
   constructor(props) {
     super(props);
-  }
-
-  observe(props, state) {
-    return {
-      user: ParseReact.currentUser,
-      events: new Parse.Query("Events").equalTo("createdBy", this.data.user).ascending("createdAt")
-    };
   }
 
   render() {
@@ -39,11 +28,11 @@ export default class Events extends ParseComponent {
         <ListGroup fill>
           <ListGroupItem><AddEvent /></ListGroupItem>
           {
-            this.data.events ?
-            this.data.events.map(function(event) {
-              return <ListGroupItem>{event.name}</ListGroupItem>
+            this.props.events ?
+            this.props.events.map(function(event) {
+              return <ListGroupItem key={event.objectId}>{event.name}</ListGroupItem>
             }) :
-            <ListGroupItem>No events created</ListGroupItem>
+            <ListGroupItem key="null">No events created</ListGroupItem>
           }
         </ListGroup>
       </Panel>

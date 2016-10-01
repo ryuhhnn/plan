@@ -35,13 +35,21 @@ export default class Login extends ParseComponent {
   login() {
     var username = ReactDOM.findDOMNode(this.refs.username).value;
     var password = ReactDOM.findDOMNode(this.refs.password).value;
+    function error() {
+      this.setState({ error: "Incorrect username or password" });
+    }
+    function success() {
+      this.context.router.push("/dashboard");
+    }
     if (username.length && password.length) {
       Parse.User.logIn(username,password).then(function() {
         // Successful Login. Redirect to Dashboard.
-        this.context.router.push("/dashboard");
+        //this.context.router.push("/dashboard");
+        success();
       }, function() {
         // Log-in error.
-        self.setState({ error: "Incorrect username or password" });
+        //self.setState({ error: "Incorrect username or password" });
+        error();
       });
     } else {
       this.setState({ error: "Please enter all fields" });

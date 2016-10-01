@@ -12,8 +12,8 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 
 // Initialize Parse
-Parse.initialize("APPLICATION_ID");
-Parse.serverURL = "SERVER_URL";
+Parse.initialize("DEVS1");
+Parse.serverURL = "http://localhost:1337/parse";
 
 const app = document.getElementById("app");
 ReactDOM.render(

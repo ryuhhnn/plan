@@ -1,4 +1,5 @@
 import React from "react";
+import ReactDOM from "react-dom";
 import DateTime from "react-datetime";
 
 var Parse = require('parse');
@@ -42,7 +43,7 @@ export default class AddEvent extends ParseComponent {
     var date = ReactDOM.findDOMNode(this.refs.date).value;
     var details = ReactDOM.findDOMNode(this.refs.details).value;
     var user = this.data.user;
-    if (name.length && location.length && date.length && details.length){
+    if (name.length && location.length && details.length){
       ParseReact.Mutation.Create("Events", {
         createdBy: user,
         name: name,
@@ -50,7 +51,7 @@ export default class AddEvent extends ParseComponent {
         date: date,
         details: details
       }).dispatch();
-      self.setState({ showModal: false });
+      this.setState({ showModal: false });
     } else {
       this.setState({ error: "Please enter all fields" });
     }
@@ -87,9 +88,9 @@ export default class AddEvent extends ParseComponent {
                   {
                     this.data.locations ?
                     this.data.locations.map(function(location) {
-                      return <option value="{location.objectId}">{location.name}</option>
+                      return <option value={location.objectId} key={location.objectId}>{location.name}</option>
                     }) :
-                    <option value="null">Please create a location first</option>
+                    <option key="null" value="null">Please create a location first</option>
                   }
                 </FormControl>
               </FormGroup>

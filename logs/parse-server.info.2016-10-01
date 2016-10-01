@@ -1,0 +1,1 @@
+{"error":{"code":111,"message":"schema mismatch for Events.location; expected Pointer<Locations> but got String"},"level":"error","message":"Error generating response. ParseError {\n  code: 111,\n  message: 'schema mismatch for Events.location; expected Pointer<Locations> but got String' }","timestamp":"2016-10-01T00:06:29.200Z"}

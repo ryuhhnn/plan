@@ -3,24 +3,16 @@ import ReactDOM from "react-dom";
 
 var Parse = require('parse');
 var ParseReact = require('parse-react');
-var ParseComponent = ParseReact.Component(React);
 
 import { Button, ControlLabel, FormControl, FormGroup, Glyphicon, Modal } from "react-bootstrap";
 
-export default class EditLocation extends ParseComponent {
+export default class EditLocation extends React.Component {
   constructor(props) {
     super(props);
     this.state = { showModal: false };
     this.open = this.open.bind(this);
     this.save = this.save.bind(this);
     this.hide = this.hide.bind(this);
-  }
-
-  observe(props, state) {
-    return {
-      user: ParseReact.currentUser,
-      location: new Parse.Query("Locations").get(this.props.locationId)
-    };
   }
 
   open() {
@@ -31,7 +23,7 @@ export default class EditLocation extends ParseComponent {
     // Code for updating location in database
     var name = ReactDOM.findDOMNode(this.refs.name).value;
     var address = ReactDOM.findDOMNode(this.refs.address).value;
-    var id = this.props.locationId;
+    var id = this.props.location.objectId;
     ParseReact.Mutation.Set(id, {
       name: name,
       address: address
@@ -55,11 +47,11 @@ export default class EditLocation extends ParseComponent {
             <form>
               <FormGroup controlId="locationName">
                 <ControlLabel>Name</ControlLabel>
-                <FormControl type="text" ref="name" value={this.data.location.name} />
+                <FormControl type="text" ref="name" value={this.props.location.name} />
               </FormGroup>
               <FormGroup controlId="locationAddress">
                 <ControlLabel>Address</ControlLabel>
-                <FormControl type="text" ref="address" value={this.data.location.address} />
+                <FormControl type="text" ref="address" value={this.props.location.address} />
               </FormGroup>
             </form>
           </Modal.Body>
