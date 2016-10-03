@@ -1,6 +1,7 @@
 # Logs
 *.log
 npm-debug.log*
+logs
 
 # Compiled JS
 js/*.min.js
