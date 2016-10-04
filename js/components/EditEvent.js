@@ -1,6 +1,5 @@
 import React from "react";
 import DateTime from "react-datetime";
-
 import { Button, ControlLabel, FormControl, FormGroup, Glyphicon, Modal } from "react-bootstrap";
 
 export default class AddEvent extends React.Component {

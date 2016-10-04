@@ -1,11 +1,10 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import { Alert, Button, ControlLabel, FormControl, FormGroup, Glyphicon, Modal } from "react-bootstrap";
 
 var Parse = require('parse');
 var ParseReact = require('parse-react');
 var ParseComponent = ParseReact.Component(React);
-
-import { Alert, Button, ControlLabel, FormControl, FormGroup, Glyphicon, Modal } from "react-bootstrap";
 
 export default class AddLocation extends ParseComponent {
   constructor(props) {

@@ -1,7 +1,5 @@
 import React from "react";
-
 import { Glyphicon, ListGroup, ListGroupItem, Panel } from "react-bootstrap";
-
 import AddLocation from "./AddLocation";
 import EditLocation from "./EditLocation";
 

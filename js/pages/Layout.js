@@ -1,5 +1,4 @@
 import React from "react";
-
 import Footer from "../components/layout/Footer";
 import Navigation from "../components/layout/Navigation";
 import UserNavigation from "../components/layout/UserNavigation";

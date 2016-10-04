@@ -1,19 +1,17 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import { Alert, Button, ControlLabel, FieldGroup, FormControl, FormGroup } from "react-bootstrap";
 
 var Parse = require('parse');
 var ParseReact = require('parse-react');
 var ParseComponent = ParseReact.Component(React);
-
-var mylogin;
-
-import { Alert, Button, ControlLabel, FieldGroup, FormControl, FormGroup } from "react-bootstrap";
+var myregister;
 
 export default class Login extends ParseComponent {
   constructor(props) {
     super(props);
     this.register = this.register.bind(this);
-    mylogin = this;
+    myregister = this;
   }
 
   observe(props, state) {
@@ -36,7 +34,7 @@ export default class Login extends ParseComponent {
 
   register() {
     function redirect() {
-      this.context.router.push("/dashboard");
+      myregister.context.router.push("/dashboard");
     }
 
     var email = ReactDOM.findDOMNode(this.refs.email).value;

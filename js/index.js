@@ -1,15 +1,14 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { Router, Route, IndexRoute, hashHistory } from "react-router";
-
-var Parse = require('parse');
-
 import Dashboard from "./pages/Dashboard";
 import EventDetail from "./pages/EventDetail";
 import Home from "./pages/Home";
 import Layout from "./pages/Layout";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
+
+var Parse = require('parse');
 
 // Initialize Parse
 Parse.initialize("DEVS1");

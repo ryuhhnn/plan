@@ -1,14 +1,12 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import Router from "react-router";
+import { Alert, Button, ControlLabel, FieldGroup, FormControl, FormGroup } from "react-bootstrap";
 
 var Parse = require('parse');
 var ParseReact = require('parse-react');
 var ParseComponent = ParseReact.Component(React);
-
 var mylogin;
-
-import { Alert, Button, ControlLabel, FieldGroup, FormControl, FormGroup } from "react-bootstrap";
 
 export default class Login extends ParseComponent {
   constructor(props) {

@@ -1,5 +1,4 @@
 import React from "react";
-
 import { Button, ControlLabel, FormControl, FormGroup, Glyphicon, Modal } from "react-bootstrap";
 
 export default class AddReservation extends React.Component {

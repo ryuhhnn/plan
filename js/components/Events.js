@@ -1,7 +1,5 @@
 import React from "react";
-
 import { Glyphicon, ListGroup, ListGroupItem, Panel } from "react-bootstrap";
-
 import AddEvent from "./AddEvent";
 
 export default class Events extends React.Component {

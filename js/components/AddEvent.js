@@ -1,12 +1,11 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import DateTime from "react-datetime";
+import { Button, ControlLabel, FormControl, FormGroup, Glyphicon, Modal } from "react-bootstrap";
 
 var Parse = require('parse');
 var ParseReact = require('parse-react');
 var ParseComponent = ParseReact.Component(React);
-
-import { Button, ControlLabel, FormControl, FormGroup, Glyphicon, Modal } from "react-bootstrap";
 
 export default class AddEvent extends ParseComponent {
   constructor(props) {

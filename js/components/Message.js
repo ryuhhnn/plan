@@ -1,5 +1,4 @@
 import React from "react";
-
 import { Button, FormControl, FormGroup, Glyphicon, Modal } from "react-bootstrap";
 
 export default class Message extends React.Component {

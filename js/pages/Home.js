@@ -1,5 +1,4 @@
 import React from "react";
-
 import { Button, Col, Grid, Jumbotron, Panel, Row } from "react-bootstrap";
 
 export default class Home extends React.Component {

@@ -1,7 +1,5 @@
 import React from "react";
-
 import { Col, Grid, Row } from "react-bootstrap";
-
 import EditEvent from "../components/EditEvent";
 import Reservations from "../components/Reservations";
 
@@ -9,7 +7,7 @@ export default class EventDetail extends React.Component {
   observe(state) {
     this.state();
   }
-  
+
   render () {
     const marginStyle = {
       marginTop: "70px",

@@ -1,10 +1,9 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import { Button, ControlLabel, FormControl, FormGroup, Glyphicon, Modal } from "react-bootstrap";
 
 var Parse = require('parse');
 var ParseReact = require('parse-react');
-
-import { Button, ControlLabel, FormControl, FormGroup, Glyphicon, Modal } from "react-bootstrap";
 
 export default class EditLocation extends React.Component {
   constructor(props) {

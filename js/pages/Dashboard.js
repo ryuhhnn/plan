@@ -1,13 +1,11 @@
 import React from "react";
+import { Col, Grid, Row } from "react-bootstrap";
+import Events from "../components/Events";
+import Locations from "../components/Locations"
 
 var Parse = require('parse');
 var ParseReact = require('parse-react');
 var ParseComponent = ParseReact.Component(React);
-
-import { Col, Grid, Row } from "react-bootstrap";
-
-import Events from "../components/Events";
-import Locations from "../components/Locations"
 
 export default class Dashboard extends ParseComponent {
   constructor(props) {

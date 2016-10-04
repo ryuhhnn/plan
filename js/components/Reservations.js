@@ -1,10 +1,9 @@
 import React from "react";
+import { Glyphicon, ListGroup, ListGroupItem, Panel } from "react-bootstrap";
 
 var Parse = require('parse');
 var ParseReact = require('parse-react');
 var ParseComponent = ParseReact.Component(React);
-
-import { Glyphicon, ListGroup, ListGroupItem, Panel } from "react-bootstrap";
 
 import AddReservation from "./AddReservation";
 import Message from "./Message";
