@@ -6,12 +6,15 @@ var Parse = require('parse');
 var ParseReact = require('parse-react');
 var ParseComponent = ParseReact.Component(React);
 
+var mylogin;
+
 import { Alert, Button, ControlLabel, FieldGroup, FormControl, FormGroup } from "react-bootstrap";
 
 export default class Login extends ParseComponent {
   constructor(props) {
     super(props);
     this.login = this.login.bind(this);
+    mylogin = this;
   }
 
   observe(props, state) {
@@ -39,12 +42,12 @@ export default class Login extends ParseComponent {
       this.setState({ error: "Incorrect username or password" });
     }
     function success() {
-      this.context.router.push("/dashboard");
+      mylogin.context.router.push("/dashboard");
     }
     if (username.length && password.length) {
       Parse.User.logIn(username,password).then(function() {
         // Successful Login. Redirect to Dashboard.
-        //this.context.router.push("/dashboard");
+        // this.context.router.push("/dashboard");
         success();
       }, function() {
         // Log-in error.
