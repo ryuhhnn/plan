@@ -5,12 +5,15 @@ var Parse = require('parse');
 var ParseReact = require('parse-react');
 var ParseComponent = ParseReact.Component(React);
 
+var mylogin;
+
 import { Alert, Button, ControlLabel, FieldGroup, FormControl, FormGroup } from "react-bootstrap";
 
 export default class Login extends ParseComponent {
   constructor(props) {
     super(props);
     this.register = this.register.bind(this);
+    mylogin = this;
   }
 
   observe(props, state) {
@@ -32,6 +35,10 @@ export default class Login extends ParseComponent {
   }
 
   register() {
+    function redirect() {
+      this.context.router.push("/dashboard");
+    }
+
     var email = ReactDOM.findDOMNode(this.refs.email).value;
     var name = ReactDOM.findDOMNode(this.refs.name).value;
     var password = ReactDOM.findDOMNode(this.refs.password).value;
@@ -45,7 +52,8 @@ export default class Login extends ParseComponent {
       });
       u.signUp().then(function() {
         // Successful registration. Redirect to Dashboard.
-        this.context.router.push("/dashboard");
+        // this.context.router.push("/dashboard");
+        redirect();
       }, function() {
         // Registration error.
         self.setState({ error: "There was an error creating your account. Please try again." });
