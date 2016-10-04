@@ -11,8 +11,8 @@ import Register from "./pages/Register";
 var Parse = require('parse');
 
 // Initialize Parse
-Parse.initialize("DEVS1");
-Parse.serverURL = "http://localhost:1337/parse";
+Parse.initialize("MASTER_KEY");
+Parse.serverURL = "SERVER_URL";
 
 const app = document.getElementById("app");
 ReactDOM.render(
