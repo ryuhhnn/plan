@@ -9,6 +9,10 @@ import AddReservation from "./AddReservation";
 import Message from "./Message";
 
 export default class Reservations extends ParseComponent {
+  observe(props, state) {
+    return;
+  }
+
   render() {
     const panelStyle = {
       borderRadius: "0px",

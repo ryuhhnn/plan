@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router";
 import { Glyphicon, ListGroup, ListGroupItem, Panel } from "react-bootstrap";
 import AddEvent from "./AddEvent";
 
@@ -28,7 +29,7 @@ export default class Events extends React.Component {
           {
             this.props.events ?
             this.props.events.map(function(event) {
-              return <ListGroupItem key={event.objectId}>{event.name}</ListGroupItem>
+              return <ListGroupItem key={event.objectId}><Link to={`/event-detail/${event.objectId}`}>{event.name}</Link></ListGroupItem>
             }) :
             <ListGroupItem key="null">No events created</ListGroupItem>
           }

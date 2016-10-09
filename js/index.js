@@ -11,8 +11,8 @@ import Register from "./pages/Register";
 var Parse = require('parse');
 
 // Initialize Parse
-Parse.initialize("MASTER_KEY");
-Parse.serverURL = "SERVER_URL";
+Parse.initialize("DEVS1");
+Parse.serverURL = "http://localhost:1337/parse";
 
 const app = document.getElementById("app");
 ReactDOM.render(
@@ -22,7 +22,7 @@ ReactDOM.render(
       <Route path="login" component={Login}></Route>
       <Route path="register" component={Register}></Route>
       <Route path="dashboard" component={Dashboard}></Route>
-      <Route path="event-detail" component={EventDetail}></Route>
+      <Route path="event-detail/:eventId" component={EventDetail}></Route>
     </Route>
   </Router>,
 app);

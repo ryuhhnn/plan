@@ -1,7 +1,12 @@
 import React from "react";
+import ReactDOM from "react-dom";
 import { Button, ControlLabel, FormControl, FormGroup, Glyphicon, Modal } from "react-bootstrap";
 
-export default class AddReservation extends React.Component {
+var Parse = require('parse');
+var ParseReact = require('parse-react');
+var ParseComponent = ParseReact.Component(React);
+
+export default class AddReservation extends ParseComponent {
   constructor(props) {
     super(props);
     this.state = { showModal: false };
@@ -10,13 +15,37 @@ export default class AddReservation extends React.Component {
     this.hide = this.hide.bind(this);
   }
 
+  observe(props, state){
+    return {
+      user: ParseReact.currentUser
+    };
+  }
+
   open() {
     this.setState({ showModal: true });
   }
 
   save() {
     // Code for saving new reservation to database
-    this.setState({ showModal: false });
+    var name = ReactDOM.findDOMNode(this.refs.name).value;
+    var email = ReactDOM.findDOMNode(this.refs.email).value;
+    var message = ReactDOM.findDOMNode(this.refs.message).value;
+    // THIS VALUE WILL CHANGE WHEN DATA PROPERTY FOR EVENT DETAIL IS ADDED AND PASSED IN
+    // ONLY A DEFAULT VALUE FOR TEMPORARY WORKAROUND
+    var eventId = "12345";
+    var user = this.data.user;
+    if (name.length && email.length){
+      ParseReact.Mutation.Create("Reservations", {
+        createdBy: user,
+        eventId: eventId,
+        name: name,
+        email: email,
+        message: message
+      }).dispatch();
+      this.setState({ showModal: false });
+    } else {
+      this.setState({ error: "Please enter all fields" });
+    }
   }
 
   hide() {
@@ -33,17 +62,17 @@ export default class AddReservation extends React.Component {
           </Modal.Header>
           <Modal.Body>
             <form>
-              <FormGroup controlId="eventName">
+              <FormGroup controlId="name">
                 <ControlLabel>Name</ControlLabel>
-                <FormControl type="text" placeholder="Jean Doe" />
+                <FormControl type="text" ref="name" placeholder="Jean Doe" />
               </FormGroup>
               <FormGroup controlId="eventName">
                 <ControlLabel>Email</ControlLabel>
-                <FormControl type="email" placeholder="email@google.com" />
+                <FormControl type="email" ref="email" placeholder="email@google.com" />
               </FormGroup>
               <FormGroup controlId="details">
                 <ControlLabel>Message</ControlLabel>
-                <FormControl componentClass="textarea" placeholder="Hey! I'm hosting an event..." />
+                <FormControl componentClass="textarea" ref="message" placeholder="Hey! I'm hosting an event..." />
               </FormGroup>
             </form>
           </Modal.Body>
