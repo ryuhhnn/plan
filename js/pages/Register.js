@@ -33,10 +33,6 @@ export default class Login extends ParseComponent {
   }
 
   register() {
-    function redirect() {
-      myregister.context.router.push("/dashboard");
-    }
-
     var email = ReactDOM.findDOMNode(this.refs.email).value;
     var name = ReactDOM.findDOMNode(this.refs.name).value;
     var password = ReactDOM.findDOMNode(this.refs.password).value;
@@ -48,13 +44,12 @@ export default class Login extends ParseComponent {
         name: name,
         email: email
       });
-      u.signUp().then(function() {
+      u.signUp().then(function(success) {
         // Successful registration. Redirect to Dashboard.
-        // this.context.router.push("/dashboard");
-        redirect();
-      }, function() {
+        myregister.context.router.push("/dashboard");
+      }, function(error) {
         // Registration error.
-        self.setState({ error: "There was an error creating your account. Please try again." });
+        self.setState({ error: "There was an error creating your account. Please try again." + error });
       });
     } else {
       this.setState({ error: "Passwords don't match!" });
