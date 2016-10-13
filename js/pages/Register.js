@@ -32,7 +32,9 @@ export default class Login extends ParseComponent {
     error: this.props.error,
   }
 
-  register() {
+  register(e) {
+    e.preventDefault();
+    var self = this;
     var email = ReactDOM.findDOMNode(this.refs.email).value;
     var name = ReactDOM.findDOMNode(this.refs.name).value;
     var password = ReactDOM.findDOMNode(this.refs.password).value;
@@ -49,7 +51,8 @@ export default class Login extends ParseComponent {
         myregister.context.router.push("/dashboard");
       }, function(error) {
         // Registration error.
-        self.setState({ error: "There was an error creating your account. Please try again." + error });
+        console.log(error);
+        self.setState({ error: "There was an error creating your account. Please try again." });
       });
     } else {
       this.setState({ error: "Passwords don't match!" });
@@ -65,7 +68,7 @@ export default class Login extends ParseComponent {
 
     return (
       <div class="container" style={marginStyle}>
-        <form>
+        <form onSubmit={this.register}>
           {
             this.state.error ?
             <Alert bsStyle="danger">
@@ -89,7 +92,7 @@ export default class Login extends ParseComponent {
             <ControlLabel>Confirm Password</ControlLabel>
             <FormControl type="password" ref="confirmPassword" placeholder="Confirm Password" />
           </FormGroup>
-          <Button onClick={this.register} type="submit">
+          <Button type="submit">
             Register
           </Button>
         </form>

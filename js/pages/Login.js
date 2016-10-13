@@ -33,7 +33,8 @@ export default class Login extends ParseComponent {
     error: this.props.error,
   }
 
-  login() {
+  login(e) {
+    e.preventDefault();
     var self = this;
     var username = ReactDOM.findDOMNode(this.refs.username).value;
     var password = ReactDOM.findDOMNode(this.refs.password).value;
@@ -62,7 +63,7 @@ export default class Login extends ParseComponent {
 
     return (
       <div class="container" style={marginStyle}>
-        <form>
+        <form onSubmit={this.login}>
           {
             this.state.error ?
             <Alert bsStyle="danger">
@@ -78,7 +79,7 @@ export default class Login extends ParseComponent {
             <ControlLabel>Password</ControlLabel>
             <FormControl type="password" ref="password" placeholder="Password" />
           </FormGroup>
-          <Button onClick={this.login} type="submit">
+          <Button type="submit">
             Login
           </Button>
         </form>
