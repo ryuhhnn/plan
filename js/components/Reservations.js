@@ -9,6 +9,10 @@ import AddReservation from "./AddReservation";
 import Message from "./Message";
 
 export default class Reservations extends ParseComponent {
+  constructor(props) {
+    super(props);
+  }
+
   observe(props, state) {
     return;
   }
@@ -31,8 +35,13 @@ export default class Reservations extends ParseComponent {
       <Panel header={locationsPanelTitle} style={panelStyle}>
         <ListGroup fill>
           <ListGroupItem><AddReservation /></ListGroupItem>
-          <ListGroupItem>Sally Joe <Message /></ListGroupItem>
-          <ListGroupItem>Billy Bob <Message /></ListGroupItem>
+          {
+            this.props.data ?
+            this.props.data.map(function(reservation) {
+              return <ListGroupItem key={reservation.objectId}>{reservation.name} <Message /></ListGroupItem>
+            }) :
+            <ListGroupItem key="null">No reservations created</ListGroupItem>
+          }
         </ListGroup>
       </Panel>
     );

@@ -15,7 +15,8 @@ export default class EventDetail extends ParseComponent {
   observe(props, state) {
     const objectId = this.props.params.eventId;
     return {
-      events: new Parse.Query("Events").equalTo("objectId", objectId).ascending("createdAt")
+      events: new Parse.Query("Events").equalTo("objectId", objectId).ascending("createdAt"),
+      reservations: new Parse.Query("Reservations").equalTo("eventId", objectId).ascending("createdAt")
     };
   }
 
@@ -42,7 +43,7 @@ export default class EventDetail extends ParseComponent {
               <EditEvent />
             </Col>
             <Col md={6}>
-              <Reservations />
+              <Reservations data={this.data.reservations}/>
             </Col>
           </Row>
         </Grid>
