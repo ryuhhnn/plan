@@ -27,7 +27,7 @@ export default class Events extends React.Component {
         <ListGroup fill>
           <ListGroupItem><AddEvent /></ListGroupItem>
           {
-            this.props.events ?
+            this.props.events.length > 0 ?
             this.props.events.map(function(event) {
               return <ListGroupItem key={event.objectId}><Link to={`/event-detail/${event.objectId}`}>{event.name}</Link></ListGroupItem>
             }) :

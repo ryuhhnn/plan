@@ -27,7 +27,7 @@ export default class Locations extends React.Component {
         <ListGroup fill>
           <ListGroupItem><AddLocation /></ListGroupItem>
           {
-            this.props.locations ?
+            this.props.locations.length > 0 ?
             this.props.locations.map(function(location) {
               return <ListGroupItem key={location.objectId}>{location.name} <EditLocation location={location} /></ListGroupItem>
             }) :
