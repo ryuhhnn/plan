@@ -27,22 +27,19 @@ export default class EventDetail extends ParseComponent {
       height: "100%"
     };
 
-    var eventName = this.data.events.map(function(e) {
-      return e.name;
-    });
-
-    var eventDetails = this.data.events.map(function(e) {
-      return e.details;
-    });
+    var defaultEvent = {name: "", details: ""};
+    if(this.data.events.length > 0) {
+      defaultEvent = { name: this.data.events[0].name, details: this.data.events[0].details };
+    }
 
     return (
       <div class="container" style={marginStyle}>
         <Grid>
           <Row className="show-grid">
             <Col md={6}>
-              <h1>{eventName}<small>Event Date</small></h1>
+              <h1>{defaultEvent.name}<small>Event Date</small></h1>
               <address><strong>Location Name</strong><br />1234 Some Street<br />St. Louis, MO 63123<br /></address>
-              <p>{eventDetails}</p>
+              <p>{defaultEvent.details}</p>
               <EditEvent />
             </Col>
             <Col md={6}>
