@@ -34,7 +34,7 @@ export default class Reservations extends ParseComponent {
     return (
       <Panel header={locationsPanelTitle} style={panelStyle}>
         <ListGroup fill>
-          <ListGroupItem><AddReservation /></ListGroupItem>
+          <ListGroupItem><AddReservation eventId={this.props.eventId} /></ListGroupItem>
           {
             this.props.data ?
             this.props.data.map(function(reservation) {

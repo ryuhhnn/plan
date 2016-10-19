@@ -30,9 +30,7 @@ export default class AddReservation extends ParseComponent {
     var name = ReactDOM.findDOMNode(this.refs.name).value;
     var email = ReactDOM.findDOMNode(this.refs.email).value;
     var message = ReactDOM.findDOMNode(this.refs.message).value;
-    // THIS VALUE WILL CHANGE WHEN DATA PROPERTY FOR EVENT DETAIL IS ADDED AND PASSED IN
-    // ONLY A DEFAULT VALUE FOR TEMPORARY WORKAROUND
-    var eventId = "12345";
+    var eventId = this.props.eventId;
     var user = this.data.user;
     if (name.length && email.length){
       ParseReact.Mutation.Create("Reservations", {

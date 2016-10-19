@@ -27,9 +27,13 @@ export default class EventDetail extends ParseComponent {
       height: "100%"
     };
 
-    var defaultEvent = {name: "", details: ""};
+    var thisEvent = { objectId: "", name: "", details: "" };
     if(this.data.events.length > 0) {
-      defaultEvent = { name: this.data.events[0].name, details: this.data.events[0].details };
+      thisEvent = {
+        objectId: this.data.events[0].objectId,
+        name: this.data.events[0].name,
+        details: this.data.events[0].details
+      };
     }
 
     return (
@@ -37,13 +41,13 @@ export default class EventDetail extends ParseComponent {
         <Grid>
           <Row className="show-grid">
             <Col md={6}>
-              <h1>{defaultEvent.name}<small>Event Date</small></h1>
-              <address><strong>Location Name</strong><br />1234 Some Street<br />St. Louis, MO 63123<br /></address>
-              <p>{defaultEvent.details}</p>
+              <h1>{thisEvent.name}<small>Event Date</small></h1>
+              <address><strong>Location Name</strong><br />Location Address</address>
+              <p>{thisEvent.details}</p>
               <EditEvent />
             </Col>
             <Col md={6}>
-              <Reservations data={this.data.reservations}/>
+              <Reservations data={this.data.reservations} eventId={thisEvent.objectId} />
             </Col>
           </Row>
         </Grid>
