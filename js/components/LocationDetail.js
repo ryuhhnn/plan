@@ -26,7 +26,9 @@ export default class LocationDetail extends ParseComponent {
     }
 
     return (
-      <address><strong>{thisLocation.name}</strong><br />{thisLocation.address}</address>
+      <div>
+        <address><strong>{thisLocation.name}</strong><br />{thisLocation.address}</address>
+      </div>
     );
   }
 }

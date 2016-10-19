@@ -1,6 +1,5 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import DateTime from "react-datetime";
 import { Button, ControlLabel, FormControl, FormGroup, Glyphicon, Modal } from "react-bootstrap";
 
 var Parse = require('parse');
@@ -95,7 +94,7 @@ export default class AddEvent extends ParseComponent {
               </FormGroup>
               <FormGroup controlId="date">
                 <ControlLabel>Date</ControlLabel>
-                <DateTime ref="date" />
+                <FormControl type="text" ref="date" placeholder="06/01/2016" />
               </FormGroup>
               <FormGroup controlId="details">
                 <ControlLabel>Event Details</ControlLabel>
