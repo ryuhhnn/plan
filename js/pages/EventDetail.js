@@ -1,6 +1,7 @@
 import React from "react";
 import { Col, Grid, Row } from "react-bootstrap";
 import EditEvent from "../components/EditEvent";
+import LocationDetail from "../components/LocationDetail";
 import Reservations from "../components/Reservations";
 
 var Parse = require('parse');
@@ -27,12 +28,13 @@ export default class EventDetail extends ParseComponent {
       height: "100%"
     };
 
-    var thisEvent = { objectId: "", name: "", details: "" };
+    var thisEvent = { objectId: "", name: "", details: "", location: "" };
     if(this.data.events.length > 0) {
       thisEvent = {
         objectId: this.data.events[0].objectId,
         name: this.data.events[0].name,
-        details: this.data.events[0].details
+        details: this.data.events[0].details,
+        location: this.data.events[0].location
       };
     }
 
@@ -42,7 +44,7 @@ export default class EventDetail extends ParseComponent {
           <Row className="show-grid">
             <Col md={6}>
               <h1>{thisEvent.name}<small>Event Date</small></h1>
-              <address><strong>Location Name</strong><br />Location Address</address>
+              <LocationDetail locationId={thisEvent.location} />
               <p>{thisEvent.details}</p>
               <EditEvent />
             </Col>
